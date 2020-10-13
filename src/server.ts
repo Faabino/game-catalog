@@ -18,6 +18,8 @@ nunjucks.configure("views", {
   express: app,
 });
 
+app.use("/assets", express.static("public"));
+
 app.set("view engine", "njk");
 
 export function makeApp(db: Db): core.Express {

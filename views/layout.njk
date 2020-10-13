@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/assets/styles/main.css" />
   </head>
   <body>
-    <a href="#" onclick="history.go(-1)">Go Back</a>
-    <ul>
-      <li><a href="/games">games</a></li>
-      <li><a href="/platforms">platforms</a></li>
-    </ul>
+  <nav>
+    <button type="button"><a href="#" onclick="history.go(-1)">Go Back</a></button>
+    <a class="nav-link" href="/games">Games</a>
+    <a class="nav-link" href="/platforms">Platforms</a>
+  </nav>
     {% block content %}{% endblock %}
   </body>
 </html>

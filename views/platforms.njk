@@ -1,9 +1,10 @@
 {% extends "layout.njk" %}
 
 {% block content %}
+<h1>Platforms</h1>
 <ul>
   {% for platform in platforms %}
-  <li><a href="/platforms/{{platform.slug}}">{{platform.name}}</a></li>
+  <li class="content"><a href="/platforms/{{platform.slug}}">{{platform.name}}</a></li>
   {% endfor %}
 </ul>
 {% endblock %}
