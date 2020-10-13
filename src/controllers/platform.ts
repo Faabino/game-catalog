@@ -1,11 +1,16 @@
 import { Request, Response } from "express";
 import { PlatformModel } from "../models/platform";
 import slugify from "slug";
+import { clientWantsJson } from "./game";
 
 export function index(model: PlatformModel) {
   return async (request: Request, response: Response): Promise<void> => {
-    const platformList = await model.findAll();
-    response.json(platformList);
+    const platforms = await model.findAll();
+    if (clientWantsJson(request)) {
+      response.json(platforms);
+    } else {
+      response.render("platforms", { platforms });
+    }
   };
 }
 
@@ -14,7 +19,11 @@ export function show(model: PlatformModel) {
     const platform = await model.findBySlug(request.params.slug);
 
     if (platform) {
-      response.json(platform);
+      if (clientWantsJson(request)) {
+        response.json(platform);
+      } else {
+        response.render("platform", { platform });
+      }
     } else {
       response.status(404).end();
     }

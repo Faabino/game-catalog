@@ -2,11 +2,20 @@ import { Request, Response } from "express";
 import { GameModel } from "../models/game";
 import slugify from "slug";
 import { PlatformModel } from "../models/platform";
+import * as express from "express";
+
+export const clientWantsJson = (request: express.Request): boolean => {
+  return request.get("accept") === "application/json";
+};
 
 export function index(model: GameModel) {
   return async (request: Request, response: Response): Promise<void> => {
     const games = await model.findAll();
-    response.json(games);
+    if (clientWantsJson(request)) {
+      response.json(games);
+    } else {
+      response.render("games", { games });
+    }
   };
 }
 
@@ -21,12 +30,11 @@ export function show(model: GameModel) {
   return async (request: Request, response: Response): Promise<void> => {
     const game = await model.findBySlug(request.params.slug);
     if (game) {
-      const gameView = {
-        name: game.name,
-        slug: game.slug,
-        platform_slug: game.platform_slug,
-      };
-      response.json(gameView);
+      if (clientWantsJson(request)) {
+        response.json(game);
+      } else {
+        response.render("game", { game });
+      }
     } else {
       response.status(404).end();
     }
@@ -57,7 +65,7 @@ export function create(model: GameModel, findPlatform: PlatformModel) {
       return;
     }
 
-    const platform = await findPlatform.findBySlug(request.body.platform_slug); // NOT GOOD, ICI FIND UNE PLATFORM
+    const platform = await findPlatform.findBySlug(request.body.platform_slug);
 
     if (platform) {
       const slug = slugify(request.body.name);
