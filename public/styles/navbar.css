@@ -1,0 +1,12 @@
+.navbar-expand-lg {
+  background-color: black !important;
+}
+
+.nav-link {
+  color: white !important;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 70%;
+}
