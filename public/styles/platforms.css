@@ -1,0 +1,9 @@
+.content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-text {
+  height: 125px;
+  overflow: hidden;
+}

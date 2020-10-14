@@ -1,0 +1,28 @@
+{% extends "layout.njk" %}
+
+{% block title %}
+  <title>Platforms</title>
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="/assets/styles/platforms.css">
+{% endblock %}
+
+{% block content %}
+<h1>Platforms</h1>
+
+<div class="content">
+  {% for platform in platforms %}
+
+  <div class="card" style="width: 18rem;">
+    <img src="{{platform.platform_logo.url}}" class="card-img-top" alt="{{platform.name}}">
+    <div class="card-body">
+      <h5 class="card-title">{{platform.name}}</h5>
+      <p class="card-text">{{platform.summary}}</p>
+      <a href="/platforms/{{platform.slug}}" class="btn btn-primary">Find More</a>
+    </div>
+  </div>
+  
+  {% endfor %}
+</div>
+{% endblock %}

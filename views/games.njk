@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+
+{% block title %}
+  <title>Games</title>
+{% endblock %}
+
+{% block content %}
+<h1>Games</h1>
+
+{% for game in games %}
+
+<a href="/games/{{game.slug}}">
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{game.cover.url}}" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body" style="max-width: 1000px;">
+        <h5 class="card-title">{{game.name}}</h5>
+        <p class="card-text">{{game.summary}}</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</a>
+
+  {% endfor %}
+
+{% endblock %}
