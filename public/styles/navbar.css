@@ -1,5 +1,9 @@
 .navbar-expand-lg {
-  background-color: black !important;
+  background-color: #032f46 !important;
+}
+
+.navbar-brand {
+  color: #ff572d !important;
 }
 
 .nav-link {
@@ -8,5 +12,5 @@
 }
 
 .nav-link:hover {
-  opacity: 70%;
+  color: #ffd2b8 !important;
 }

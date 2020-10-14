@@ -1,16 +1,16 @@
 body {
-  background-color: #191919;
+  background-color: #ff572d;
 }
 
 h1 {
   color: white;
   text-align: center;
-  font-size: 100px;
+  font-size: 75px;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 a:hover {
-  color: #606368;
+  color: #ffd2b8;
   text-decoration: none;
 }
