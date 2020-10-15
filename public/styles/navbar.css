@@ -4,11 +4,14 @@
 
 .navbar-brand {
   color: #ff572d !important;
+  font-family: "Staatliches", serif;
+  font-size: 25px;
 }
 
 .nav-link {
   color: white !important;
   transition: all 0.2s;
+  margin-left: 3rem;
 }
 
 .nav-link:hover {
