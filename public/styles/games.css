@@ -1,4 +1,4 @@
-.mb-3 {
+#games .mb-3 {
   background-color: #032f46;
   color: white;
   margin-bottom: -100px !important;
@@ -10,30 +10,30 @@
   transition: all 0.4s ease-in-out;
 }
 
-.mb-3:hover {
+#games .mb-3:hover {
   transform: translate3d(0px, 0px, -250px);
   color: black;
   background-color: #ffd2b8;
   z-index: 0;
 }
 
-.image-url {
+#games .image-url {
   display: flex;
   justify-content: center;
   max-width: 250px;
 }
 
-.col-md-4 {
+#games .col-md-4 {
   display: flex;
   justify-content: center;
 }
 
-.col-md-8 {
+#games .col-md-8 {
   display: flex;
   flex-direction: column;
 }
 
-.card-title {
+#games .card-title {
   font-size: 35px;
 }
 
@@ -41,4 +41,34 @@
   font-size: 12px;
   max-height: 80px;
   overflow: scroll;
+}
+
+#newGame,
+#newGameForm {
+  background-color: #032f46;
+  color: white;
+}
+
+.form-row {
+  background-color: #004365;
+  padding: 0.25rem;
+}
+
+#startForm {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+#endForm {
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+#submitData {
+  margin-top: 0.5rem;
+  color: white;
+  background-color: #ff572d;
+}
+
+#newGame:hover,
+#submitData:hover {
+  background-color: #ffd2b8;
 }

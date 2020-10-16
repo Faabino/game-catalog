@@ -11,9 +11,77 @@
 {% block content %}
 <h1>Games</h1>
 
+<div class="container">
+  <div class="column flex-center">
+
+
+    <button class="btn" id="newGame" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    New Game
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body" id="newGameForm">
+    
+
+    <form>
+      <div class="form-row" id="startForm">
+        <div class="col-md-6 mb-3">
+          <label for="validationServer01">Name*</label>
+          <input type="text" class="form-control" placeholder="Game Name" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationServer02">Cover URL*</label>
+          <input type="text" class="form-control" placeholder="Game Cover URL" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Summary*</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Game presentation" required></textarea>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationServer03">URL*</label>
+          <input type="text" class="form-control" placeholder="Game URL" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="validationServer04">Release Date</label>
+          <input type="text" class="form-control" placeholder="DD/MM/AAAA">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationServer05">Genre</label>
+          <input type="text" class="form-control" placeholder="FPS, TPS, Strategy...">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="validationServer06">Rating</label>
+          <input type="range" class="form-control-range" id="formControlRange">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationServer07">Screenshots</label>
+          <input type="text" class="form-control" placeholder="Screenshots URL">
+        </div>
+      </div>
+      <button class="btn" id="submitData" type="submit">Create game</button>
+    </form>
+
+
+
+  </div>
+</div>
+
+
+
+  </div>
+</div>
+
 {% for game in games %}
 
-<div class="container">
+<div class="container" id="games">
   <div class="row">
     <a class="col-12" href="/games/{{game.slug}}">
       <div class="card mb-3">
