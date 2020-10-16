@@ -29,7 +29,8 @@
   color: white;
 }
 
-#dropdownMenuButton {
+#dropdownMenuButton,
+#loginBtn {
   color: white;
   background-color: #ff572d;
 }
@@ -44,6 +45,7 @@
 }
 
 .dropdown-item:hover,
-#dropdownMenuButton:hover {
+#dropdownMenuButton:hover,
+#loginBtn:hover {
   background-color: #ffd2b8;
 }
