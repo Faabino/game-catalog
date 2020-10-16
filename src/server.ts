@@ -1,69 +1,65 @@
-import bodyParser from "body-parser";
-import * as core from "express-serve-static-core";
 import { Db } from "mongodb";
-import * as platformController from "./controllers/platform";
-import { PlatformModel } from "./models/platform";
-import * as gameController from "./controllers/game";
-import { GameModel } from "./models/game";
-import express, { NextFunction, Request, Response } from "express";
+import * as core from "express-serve-static-core";
+import express from "express";
+import * as gamesController from "./controllers/games.controller";
 import * as nunjucks from "nunjucks";
-import * as dotenv from "dotenv";
+import * as platformsController from "./controllers/platforms.controller";
+import GameModel, { Game } from "./models/gameModel";
+import PlatformModel, { Platform } from "./models/platformModel";
+import bodyParser from "body-parser";
 
-dotenv.config();
+const clientWantsJson = (request: express.Request): boolean =>
+  request.get("accept") === "application/json";
 
-const app = express();
-
-nunjucks.configure("views", {
-  autoescape: true,
-  express: app,
-});
-
-app.use("/assets", express.static("public"));
-
-app.set("view engine", "njk");
+const jsonParser = bodyParser.json();
 
 export function makeApp(db: Db): core.Express {
-  const jsonParser = bodyParser.json();
-  const platformModel = new PlatformModel(db.collection("platforms"));
-  const gameModel = new GameModel(db.collection("games"));
+  const app = express();
 
-  app.get("/", (request, response) => {
-    response.render("home");
+  nunjucks.configure("views", {
+    autoescape: true,
+    express: app,
   });
 
-  app.get("/platforms", platformController.index(platformModel));
-  app.get("/platforms/:slug", platformController.show(platformModel));
-  app.post("/platforms", jsonParser, platformController.create(platformModel));
-  app.delete(
-    "/platforms/:slug",
-    jsonParser,
-    platformController.destroy(platformModel)
-  );
+  app.use("/assets", express.static("public"));
+  app.set("view engine", "njk");
+
+  const platformModel = new PlatformModel(db.collection<Platform>("platforms"));
+  const gameModel = new GameModel(db.collection<Game>("games"));
+
+  app.get("/", (_request, response) => response.render("pages/home"));
+
+  app.get("/platforms", platformsController.index(platformModel));
+  app.get("/platforms/:slug", platformsController.show(platformModel));
+  app.post("/platforms", jsonParser, platformsController.create(platformModel));
   app.put(
     "/platforms/:slug",
     jsonParser,
-    platformController.update(platformModel)
+    platformsController.update(platformModel)
+  );
+  app.delete(
+    "/platforms/:slug",
+    jsonParser,
+    platformsController.destroy(platformModel)
   );
 
-  app.get(
-    "/platforms/:slug/games",
-    gameController.indexPlatformSlug(gameModel)
-  );
-
-  app.get("/games", gameController.index(gameModel));
-  app.get("/games/:slug", gameController.show(gameModel));
+  app.get("/platforms/:slug/games", gamesController.list(gameModel));
+  app.get("/games", gamesController.index(gameModel));
+  app.get("/games/:slug", gamesController.show(gameModel));
   app.post(
     "/games",
     jsonParser,
-    gameController.create(gameModel, platformModel)
+    gamesController.create(gameModel, platformModel)
   );
-  app.delete("/games/:slug", jsonParser, gameController.destroy(gameModel));
-  app.put("/games/:slug", jsonParser, gameController.update(gameModel));
+  app.put("/games/:slug", jsonParser, gamesController.update(gameModel));
+  app.delete("/games/:slug", jsonParser, gamesController.destroy(gameModel));
 
-  // This should be the last call to `app` in this file
-  app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
-    console.error(error);
-    next();
+  app.get("/*", (request, response) => {
+    if (clientWantsJson(request)) {
+      response.status(404).json({ error: "Not Found" });
+    } else {
+      response.status(404).render("pages/not-found");
+    }
   });
 
   return app;

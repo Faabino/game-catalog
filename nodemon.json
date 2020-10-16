@@ -1,6 +1,6 @@
 {
-  "watch": ["src/", "index.ts", "views"],
-  "ext": "ts, njk",
+  "watch": ["src/", "index.ts", "public", "views"],
+  "ext": "*",
   "ignore": [],
-  "exec": "ts-node index.ts"
+  "exec": "ts-node src/index.ts"
 }

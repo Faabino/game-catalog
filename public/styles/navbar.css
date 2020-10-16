@@ -17,3 +17,33 @@
 .nav-link:hover {
   color: #ffd2b8 !important;
 }
+
+#navbarNavAltMarkup {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar-login {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+
+.dropdown .btn {
+  color: white;
+  background-color: #ff572d;
+}
+
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-menu {
+  color: white;
+  background-color: #032f46;
+}
+
+.dropdown-item:hover,
+.dropdown .btn:hover {
+  background-color: #ffd2b8;
+}
