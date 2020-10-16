@@ -12,7 +12,7 @@
 <h1>Games</h1>
 
 <div class="container">
-  <div class="column flex-center">
+  <div class="column">
 
 
     <button class="btn" id="newGame" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -23,7 +23,7 @@
   <div class="card card-body" id="newGameForm">
     
 
-    <form>
+    <form method="POST" action="/games"> <!-- ??? -->
       <div class="form-row" id="startForm">
         <div class="col-md-6 mb-3">
           <label for="validationServer01">Name*</label>

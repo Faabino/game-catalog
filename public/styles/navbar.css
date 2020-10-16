@@ -29,7 +29,7 @@
   color: white;
 }
 
-.dropdown .btn {
+#dropdownMenuButton {
   color: white;
   background-color: #ff572d;
 }
@@ -44,6 +44,6 @@
 }
 
 .dropdown-item:hover,
-.dropdown .btn:hover {
+#dropdownMenuButton:hover {
   background-color: #ffd2b8;
 }

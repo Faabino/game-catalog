@@ -12,6 +12,7 @@ const clientWantsJson = (request: express.Request): boolean =>
   request.get("accept") === "application/json";
 
 const jsonParser = bodyParser.json();
+const formParser = bodyParser.urlencoded({ extended: true });
 
 export function makeApp(db: Db): core.Express {
   const app = express();
